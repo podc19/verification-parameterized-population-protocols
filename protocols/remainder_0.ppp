@@ -1,0 +1,52 @@
+{
+    "title": "Remainder ($b=0$)",
+    "parameters": [ "b", "c" ],
+    "constraints": "(and (>= c 3) (<= 0 b) (< b c) (= b 0))",
+    "states": {
+        "A": "(and (<= 0 x) (< x c))",
+        "Y": "(= x 1)",
+        "N": "(= x 1)"
+    },
+    "transitions": {
+        "A_i,A_j -> A_{i+j mod c},A_0": {
+            "pre":  [ "A", "A" ],
+            "post": [ "A", "A" ],
+            "predicate": "(and (<= 1 i) (< i c) (<= 1 j) (< j c) (or (and (= k (+ i j)) (< (+ i j) c)) (and (= k (+ i j (- c))) (>= (+ i j) c))) (= l 0))"
+        },
+        "A_b,A_0 -> A_b,Y": {
+            "pre":  [ "A", "A" ],
+            "post": [ "A", "Y" ],
+            "predicate": "(and (= i b) (= j 0) (= k b) (= l 1))"
+        },
+        "A_b,N -> A_b,Y": {
+            "pre":  [ "A", "N" ],
+            "post": [ "A", "Y" ],
+            "predicate": "(and (= i b) (= j 1) (= k b) (= l 1))"
+        },
+        "A_i,A_0 -> A_i,N": {
+            "pre":  [ "A", "A" ],
+            "post": [ "A", "N" ],
+            "predicate": "(and (<= 0 i) (< i c) (not (= i b)) (= j 0) (= k i) (= l 1))"
+        },
+        "A_i,Y -> A_i,N": {
+            "pre":  [ "A", "Y" ],
+            "post": [ "A", "N" ],
+            "predicate": "(and (<= 0 i) (< i c) (not (= i b)) (= j 1) (= k i) (= l 1))"
+        }
+    },
+    "initialStates": {
+        "A": "true",
+        "Y": "false",
+        "N": "false"
+    },
+    "trueStates": {
+        "A": "(= x b)",
+        "Y": "true",
+        "N": "false"
+    },
+    "falseStates": {
+        "A": "(not (= x b))",
+        "Y": "false",
+        "N": "true"
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "timeout": 1000,
+    "protocols":
+    [
+        ["../protocols/flockofbirds_basic.ppp"],
+        ["../protocols/flockofbirds_tower.ppp"],
+        ["../protocols/flockofbirds_log.ppp"],
+        ["../protocols/remainder_0.ppp"],
+        ["../protocols/remainder_1.ppp"],
+        ["../protocols/remainder_ge1.ppp"],
+        ["../protocols/remainder_ge0.ppp"],
+        ["../protocols/threshold_variant1.ppp"],
+        ["../protocols/threshold_variant2.ppp"],
+        ["../protocols/threshold_variant3.ppp"]
+    ]
+}

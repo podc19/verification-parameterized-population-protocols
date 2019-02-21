@@ -1,0 +1,121 @@
+{
+    "title": "Threshold (variant 3)",
+    "parameters": [ "v", "c" ],
+    "constraints": "(and (< 0 v) (< (- v) c) (< c v))",
+    "states": {
+        "L0": "(and (<= (- v) x) (<= x v))",
+        "L1": "(and (<= (- v) x) (<= x v))",
+        "F0": "(and (<= (- v) x) (<= x v))",
+        "F1": "(and (<= (- v) x) (<= x v))"
+    },
+    "transitions": {
+        "L0 F0 -> L0 F0 refinement": {
+            "pre":  [ "L0", "F0" ],
+            "post": [ "L0", "F0" ],
+            "predicate": "(and (= i (- v)) (<= j 0) (= k (- v)) (= l j) (< k c))"
+        },
+        "L1 F1 -> L1 F1 refinement": {
+            "pre":  [ "L1", "F1" ],
+            "post": [ "L1", "F1" ],
+            "predicate": "(and (= i v) (>= j 0) (= k v) (= l j) (>= k c))"
+        },
+        "F0 F0 -> F0 F0 refinement": {
+            "pre":  [ "F0", "F0" ],
+            "post": [ "F0", "F0" ],
+            "predicate": "(and (= i 0) (= j 0) (= k 0) (= l 0))"
+        },
+        "F1 F1 -> F1 F1 refinement": {
+            "pre":  [ "F1", "F1" ],
+            "post": [ "F1", "F1" ],
+            "predicate": "(and (= i 0) (= j 0) (= k 0) (= l 0))"
+        },
+        "L0 F0 -> L0 F0": {
+            "pre":  [ "L0", "F0" ],
+            "post": [ "L0", "F0" ],
+            "predicate": "(and (=> (<= (+ i j) (- v)) (= k (- v))) (=> (>= (+ i j) v) (= k v)) (=> (and (>= (+ i j) (- v)) (<= (+ i j) v)) (= k (+ i j))) (= l (+ i j (- k))) (< k c))"
+        },
+        "L0 F0 -> L1 F1": {
+            "pre":  [ "L0", "F0" ],
+            "post": [ "L1", "F1" ],
+            "predicate": "(and (=> (<= (+ i j) (- v)) (= k (- v))) (=> (>= (+ i j) v) (= k v)) (=> (and (>= (+ i j) (- v)) (<= (+ i j) v)) (= k (+ i j))) (= l (+ i j (- k))) (>= k c))"
+        },
+        "L0 F1 -> L0 F0": {
+            "pre":  [ "L0", "F1" ],
+            "post": [ "L0", "F0" ],
+            "predicate": "(and (=> (<= (+ i j) (- v)) (= k (- v))) (=> (>= (+ i j) v) (= k v)) (=> (and (>= (+ i j) (- v)) (<= (+ i j) v)) (= k (+ i j))) (= l (+ i j (- k))) (< k c))"
+        },
+        "L0 F1 -> L1 F1": {
+            "pre":  [ "L0", "F1" ],
+            "post": [ "L1", "F1" ],
+            "predicate": "(and (=> (<= (+ i j) (- v)) (= k (- v))) (=> (>= (+ i j) v) (= k v)) (=> (and (>= (+ i j) (- v)) (<= (+ i j) v)) (= k (+ i j))) (= l (+ i j (- k))) (>= k c))"
+        },
+        "L1 F0 -> L0 F0": {
+            "pre":  [ "L1", "F0" ],
+            "post": [ "L0", "F0" ],
+            "predicate": "(and (=> (<= (+ i j) (- v)) (= k (- v))) (=> (>= (+ i j) v) (= k v)) (=> (and (>= (+ i j) (- v)) (<= (+ i j) v)) (= k (+ i j))) (= l (+ i j (- k))) (< k c))"
+        },
+        "L1 F0 -> L1 F1": {
+            "pre":  [ "L1", "F0" ],
+            "post": [ "L1", "F1" ],
+            "predicate": "(and (=> (<= (+ i j) (- v)) (= k (- v))) (=> (>= (+ i j) v) (= k v)) (=> (and (>= (+ i j) (- v)) (<= (+ i j) v)) (= k (+ i j))) (= l (+ i j (- k))) (>= k c))"
+        },
+        "L1 F1 -> L0 F0": {
+            "pre":  [ "L1", "F1" ],
+            "post": [ "L0", "F0" ],
+            "predicate": "(and (=> (<= (+ i j) (- v)) (= k (- v))) (=> (>= (+ i j) v) (= k v)) (=> (and (>= (+ i j) (- v)) (<= (+ i j) v)) (= k (+ i j))) (= l (+ i j (- k))) (< k c))"
+        },
+        "L1 F1 -> L1 F1": {
+            "pre":  [ "L1", "F1" ],
+            "post": [ "L1", "F1" ],
+            "predicate": "(and (=> (<= (+ i j) (- v)) (= k (- v))) (=> (>= (+ i j) v) (= k v)) (=> (and (>= (+ i j) (- v)) (<= (+ i j) v)) (= k (+ i j))) (= l (+ i j (- k))) (>= k c))"
+        },
+        "L0 L0 -> L0 F0": {
+            "pre":  [ "L0", "L0" ],
+            "post": [ "L0", "F0" ],
+            "predicate": "(and (=> (<= (+ i j) (- v)) (= k (- v))) (=> (>= (+ i j) v) (= k v)) (=> (and (>= (+ i j) (- v)) (<= (+ i j) v)) (= k (+ i j))) (= l (+ i j (- k))) (< k c))"
+        },
+        "L0 L0 -> L1 F1": {
+            "pre":  [ "L0", "L0" ],
+            "post": [ "L1", "F1" ],
+            "predicate": "(and (=> (<= (+ i j) (- v)) (= k (- v))) (=> (>= (+ i j) v) (= k v)) (=> (and (>= (+ i j) (- v)) (<= (+ i j) v)) (= k (+ i j))) (= l (+ i j (- k))) (>= k c))"
+        },
+        "L0 L1 -> L0 F0": {
+            "pre":  [ "L0", "L1" ],
+            "post": [ "L0", "F0" ],
+            "predicate": "(and (=> (<= (+ i j) (- v)) (= k (- v))) (=> (>= (+ i j) v) (= k v)) (=> (and (>= (+ i j) (- v)) (<= (+ i j) v)) (= k (+ i j))) (= l (+ i j (- k))) (< k c))"
+        },
+        "L0 L1 -> L1 F1": {
+            "pre":  [ "L0", "L1" ],
+            "post": [ "L1", "F1" ],
+            "predicate": "(and (=> (<= (+ i j) (- v)) (= k (- v))) (=> (>= (+ i j) v) (= k v)) (=> (and (>= (+ i j) (- v)) (<= (+ i j) v)) (= k (+ i j))) (= l (+ i j (- k))) (>= k c))"
+        },
+        "L1 L1 -> L0 F0": {
+            "pre":  [ "L1", "L1" ],
+            "post": [ "L0", "F0" ],
+            "predicate": "(and (=> (<= (+ i j) (- v)) (= k (- v))) (=> (>= (+ i j) v) (= k v)) (=> (and (>= (+ i j) (- v)) (<= (+ i j) v)) (= k (+ i j))) (= l (+ i j (- k))) (< k c))"
+        },
+        "L1 L1 -> L1 F1": {
+            "pre":  [ "L1", "L1" ],
+            "post": [ "L1", "F1" ],
+            "predicate": "(and (=> (<= (+ i j) (- v)) (= k (- v))) (=> (>= (+ i j) v) (= k v)) (=> (and (>= (+ i j) (- v)) (<= (+ i j) v)) (= k (+ i j))) (= l (+ i j (- k))) (>= k c))"
+        }
+    },
+    "initialStates": {
+        "L0": "true",
+        "L1": "true",
+        "F0": "false",
+        "F1": "false"
+    },
+    "trueStates": {
+        "L0": "false",
+        "L1": "true",
+        "F0": "false",
+        "F1": "true"
+    },
+    "falseStates": {
+        "L0": "true",
+        "L1": "false",
+        "F0": "true",
+        "F1": "false"
+    }
+}

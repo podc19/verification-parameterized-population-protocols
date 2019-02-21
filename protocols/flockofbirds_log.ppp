@@ -1,0 +1,38 @@
+{
+    "title": "Flock-of-birds (log.)",
+    "parameters": [ "n" ],
+    "constraints": "(>= n 1)",
+    "states": {
+        "N": "(= x 1)",
+        "A": "(and (<= 0 x) (<= x n))"
+    },
+    "transitions": {
+        "A_i,A_i -> A_{i+1},N": {
+            "pre":  [ "A", "A" ],
+            "post": [ "A", "N" ],
+            "predicate": "(and (<= 0 i) (< i n) (<= 0 j) (< j n) (= i j) (= k (+ i 1)) (= l 1))"
+        },
+        "N,A_n -> A_n,A_n": {
+            "pre":  [ "N", "A" ],
+            "post": [ "A", "A" ],
+            "predicate": "(and (= i 1) (= j n) (= k n) (= l n))"
+        },
+        "A_i,A_n -> A_n,A_n": {
+            "pre":  [ "A", "A" ],
+            "post": [ "A", "A" ],
+            "predicate": "(and (<= 0 i) (< i n) (= j n) (= k n) (= l n))"
+        }
+    },
+    "initialStates": {
+        "N": "true",
+        "A": "(= x 0)"
+    },
+    "trueStates": {
+        "N": "false",
+        "A": "(=  x n)"
+    },
+    "falseStates": {
+        "N": "true",
+        "A": "(<  x n)"
+    }
+}

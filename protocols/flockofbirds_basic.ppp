@@ -1,0 +1,29 @@
+{
+    "title": "Flock-of-birds (basic)",
+    "parameters": [ "c" ],
+    "constraints": "(>= c 2)",
+    "states": {
+        "A": "(and (<= 0 x) (<= x c))"
+    },
+    "transitions": {
+        "A_i,A_j -> A_{i+j},A_0": {
+            "pre":  [ "A", "A" ],
+            "post": [ "A", "A" ],
+            "predicate": "(and (<= 0 i) (< i c) (<= 0 j) (< j c) (= k (+ i j)) (= l 0) (< (+ i j) c))"
+        },
+        "A_i,A_j -> A_c,A_c": {
+            "pre":  [ "A", "A" ],
+            "post": [ "A", "A" ],
+            "predicate": "(and (<= 0 i) (<= i c) (<= 0 j) (<= j c) (= k c) (= l c) (>= (+ i j) c))"
+        }
+    },
+    "initialStates": {
+        "A": "(or (= 0 x) (= x 1))"
+    },
+    "trueStates": {
+        "A": "(=  x c)"
+    },
+    "falseStates": {
+        "A": "(<  x c)"
+    }
+}

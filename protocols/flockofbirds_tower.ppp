@@ -1,0 +1,29 @@
+{
+    "title": "Flock-of-birds (tower)",
+    "parameters": [ "c" ],
+    "constraints": "(>= c 2)",
+    "states": {
+        "A": "(and (<= 0 x) (<= x c))"
+    },
+    "transitions": {
+        "A_i,A_i -> A_i,A_{i+1}": {
+            "pre":  [ "A", "A" ],
+            "post": [ "A", "A" ],
+            "predicate": "(and (<= 1 i) (< i c) (<= 1 j) (< j c) (= i j) (= k (+ i 1)) (= l i))"
+        },
+        "A_c,A_j -> A_c,A_c": {
+            "pre":  [ "A", "A" ],
+            "post": [ "A", "A" ],
+            "predicate": "(and (= i c) (< j c) (= k c) (= l c))"
+        }
+    },
+    "initialStates": {
+        "A": "(or (= 0 x) (= x 1))"
+    },
+    "trueStates": {
+        "A": "(=  x c)"
+    },
+    "falseStates": {
+        "A": "(<  x c)"
+    }
+}

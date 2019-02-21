@@ -1,0 +1,24 @@
+\documentclass[11pt, letterpaper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage[binary-units]{siunitx}
+
+\DeclareMathAlphabet{\pazocal}{OMS}{zplm}{m}{n}
+\newcommand{\calP}{\pazocal{P}}
+\newcommand{\calQ}{\pazocal{Q}}
+
+\begin{document}
+\begin{table}[h]
+    \begin{center}
+        \setlength{\tabcolsep}{3pt}
+        \input{table}
+    \end{center}
+    \caption{Results for parameterized protocols, stating the sizes of
+        $(\calP, h)$ and $G$, with the time spent computing them;
+        whether $(\calP, h, G)$ is a termination witness;
+        and the derived complexity bound.}
+\end{table}
+\end{document}
