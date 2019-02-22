@@ -8,4 +8,4 @@ if ! [ -x "$(command -v pdflatex)" ]; then
 else
     pdflatex template.tex
 fi
-cp template.tex ../results.pdf
+cp template.pdf ../results.pdf
