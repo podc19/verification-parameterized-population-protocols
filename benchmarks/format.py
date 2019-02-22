@@ -4,6 +4,7 @@ import importlib.util
 import json
 import sys
 import os
+import re
 
 sys.path.append("../src/")
 
@@ -48,9 +49,10 @@ def table(data):
     print("\\midrule")
     
     for d in data:
-        name, protocol = load_protocol(d["protocol"])
-        
         if d["elapsed"]["tree"] != "timeout":
+            name, protocol = load_protocol(d["protocol"])
+            states     = len(protocol["states"])
+            transitions = len(protocol["transitions"])
             stages     = d["tree"]["stages"]
             terminal   = d["tree"]["terminal"]
             depth      = d["tree"]["max-depth"]
@@ -60,6 +62,9 @@ def table(data):
             duration   = "{:.2f}".format(d["elapsed"]["tree"])
             loading    = "{:.2f}".format(d["elapsed"]["loading"])
         else:
+            name       = re.sub('_', '\\_', os.path.basename(d["protocol"][0]))
+            states     = "---"
+            transitions = "---"
             stages     = "---"
             terminal   = "---"
             depth      = "---"
@@ -67,10 +72,10 @@ def table(data):
             witness    = "---"
             speed      = "---"
             duration   = "timeout"
-            loading    = "{:.3f}".format(d["elapsed"]["loading"])
+            loading    = "---"
 
         print(TEMPLATE.format(name,
-                              len(protocol["states"]), len(protocol["transitions"]), loading,
+                              states, transitions, loading,
                               stages, duration, witness, speed))
 
 
